@@ -24,10 +24,11 @@
 <body>
 <div class="container">
     <?php
-    //------ skriva ut arrayen som boxar i html ------
     foreach ($gameBoard as $row) {
         foreach ($row as $cell) {
-            echo "<div class='box'>$cell</div>";
+            ?>
+            <div class='box'><?= $cell ?></div>
+            <?php
         }
     }
     ?>

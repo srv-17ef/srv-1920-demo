@@ -28,4 +28,4 @@ for ($rowNr = 0; $rowNr < $nrOfRows; $rowNr++) {
 //kontrollera att arrayen ser rätt ut
 //var_dump($gameBoard);
 
-require "separeted.view.php";
+require "separated.view.php";
