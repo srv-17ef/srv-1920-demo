@@ -17,7 +17,8 @@ $cars = [
         'name' => "Firebird Trans Am",
         'make' => "Pontiac",
         'year' => 1989
-    ], [
+    ],
+    [
         'id' => 42,
         'name' => "911",
         'make' => "Porsche",
