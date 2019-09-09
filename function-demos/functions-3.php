@@ -1,14 +1,25 @@
 <?php
-
-//indata $isLoud
-function sayHello($isLoud) {
-    if($isLoud){
-        echo "HELLO!";
-    } else {
-        echo "Hello!";
-    }
+function sayHello($name)
+{
+    echo "Hello $name.";
+}
+function sayMoreHello($first, $last)
+{
+    echo "Hello $first $last.";
+}
+function sayMostHello($name, $title = 'The Boss')
+{
+    echo "Hello $name aka $title";
 }
 
-//mata in true till isLoud
-sayHello(true);
+//korrekt
+sayHello("Frank Herbert");
+sayMoreHello("Frank", "Herbert");
+sayMostHello("Frank");
+
+//felaktiga anrop
+sayHello();
+sayMoreHello("Frank");
+sayMostHello("Frank","Dr","Herbert");
+
 
