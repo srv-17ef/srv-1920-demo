@@ -23,14 +23,14 @@ function connect()
 
 /**
  *  Kör fråga som ej returnerar data
- * @param $query
+ * @param string $query
  * @return bool success
  */
-function runQuery($query)
+function runQuery(string $query)
 {
 
     $db = connect();
-    $stmt = $db->prepare("SELECT * FROM teachers");
+    $stmt = $db->prepare($query);
     return $stmt->execute();
 }
 
@@ -105,13 +105,22 @@ function findUserByPartialName(string $partial)
 }
 
 /**
- *  Drop and recreate tables
+ * Droppa en tabell
+ * @param string $table
+ * @return bool
  */
-function setupTables()
+function drop(string $table){
+    $query = "DROP TABLE IF EXISTS $table;";
+    return runQuery($query);
+}
+
+/**
+ *  Create tables
+ */
+function createTables()
 {
     $query =
-        "DROP TABLE IF EXISTS teachers;
-         CREATE TABLE teachers(
+        "CREATE TABLE teachers(
             id       INTEGER primary key autoincrement,
             name     varchar(255) NOT NULL,
             username varchar(255) NOT NULL,
@@ -152,6 +161,7 @@ function seed()
  * Migrate tables and seed data
  */
 function migrate(){
-    setupTables();
+    drop("teachers");
+    createTables();
     seed();
 }
