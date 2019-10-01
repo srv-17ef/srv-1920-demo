@@ -104,6 +104,9 @@ function findUserByPartialName(string $partial)
     return $user;
 }
 
+/**
+ *  Drop and recreate tables
+ */
 function setupTables()
 {
     $query =
@@ -123,6 +126,9 @@ function setupTables()
     }
 }
 
+/**
+ * Seed tables with dummy data
+ */
 function seed()
 {
     $query =
@@ -142,6 +148,9 @@ function seed()
     }
 }
 
+/**
+ * Migrate tables and seed data
+ */
 function migrate(){
     setupTables();
     seed();
