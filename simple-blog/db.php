@@ -36,14 +36,14 @@ function runQuery(string $query)
 
 /**
  * Hämta enskild rad data
- * @param $query
+ * @param string $query
  * @return mixed result assoc array
  */
-function fetch($query)
+function fetch(string $query)
 {
     $db = connect();
 // förbered och kör en SQL-fråga
-    $stmt = $db->prepare("SELECT * FROM teachers");
+    $stmt = $db->prepare($query);
     $stmt->execute();
     // hämta resultatet från frågan
     return $stmt->fetch();
@@ -52,20 +52,29 @@ function fetch($query)
 
 /**
  * Hämta enskild rad data
- * @param $query
+ * @param string $query
  * @return mixed 2d result assoc array
  */
-function fetchAll($query)
+function fetchAll(string $query)
 {
     $db = connect();
 // förbered och kör en SQL-fråga
-    $stmt = $db->prepare("SELECT * FROM teachers");
+    $stmt = $db->prepare($query);
     $stmt->execute();
     // hämta resultatet från frågan
     return $stmt->fetchAll();
 
 }
 
+
+/**
+ * Hämta alla användare
+ * @return mixed 2d assoc array
+ */
+function findAllUsers(){
+    $query = "SELECT * FROM teachers";
+    return fetchAll($query);
+}
 
 /**
  * Hämta en användare baserad på id
