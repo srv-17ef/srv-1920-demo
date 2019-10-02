@@ -13,12 +13,10 @@ try {
     echo $e->errorInfo;
     exit();
 }
-
+//Hårdkodat och upprepat
 // förbered och kör en SQL-fråga
 $stmt = $db->prepare("SELECT * FROM teachers");
 $stmt->execute();
-
-// hämta resultatet från frågan
 $results = $stmt->fetchAll();
 var_dump($results);
 

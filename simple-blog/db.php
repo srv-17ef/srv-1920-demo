@@ -71,7 +71,8 @@ function fetchAll(string $query)
  * Hämta alla användare
  * @return mixed 2d assoc array
  */
-function findAllUsers(){
+function findAllUsers()
+{
     $query = "SELECT * FROM teachers";
     return fetchAll($query);
 }
@@ -91,10 +92,9 @@ function findUserById(int $id)
 /**
  * Hämta användare baserat på namn
  * @param string $name
- * @param bool $exactMatch
  * @return mixed
  */
-function findUserByName(string $name, bool $exactMatch)
+function findUserByName(string $name)
 {
     $query = "SELECT * FROM teachers WHERE='$name'";
     $user = fetch($query);
@@ -118,7 +118,8 @@ function findUserByPartialName(string $partial)
  * @param string $table
  * @return bool
  */
-function drop(string $table){
+function drop(string $table)
+{
     $query = "DROP TABLE IF EXISTS $table;";
     return runQuery($query);
 }
@@ -137,7 +138,7 @@ function createTables()
             clan     varchar(255) NOT NULL
         );";
     $migrated = runQuery($query);
-    if($migrated){
+    if ($migrated) {
         echo "Tables were migrated successfully.";
     } else {
         echo "Something did not go according to plan. Tables are not migrated.";
@@ -159,7 +160,7 @@ function seed()
             (null, 'Tommy Svensson', 'quillboar', 2, 'H');
         ";
     $seeded = runQuery($query);
-    if($seeded){
+    if ($seeded) {
         echo "Tables were seeded successfully.";
     } else {
         echo "Something did not go according to plan. Tables are not seeded.";
@@ -169,8 +170,53 @@ function seed()
 /**
  * Migrate tables and seed data
  */
-function migrate(){
+function migrate()
+{
     drop("teachers");
     createTables();
     seed();
+}
+
+/**
+ * Lägg till en användare
+ * @param string $name
+ * @param string $username
+ * @param int $ranking
+ * @param string $clan
+ * @return bool success
+ */
+function store(string $name, string $username, int $ranking = 100, string $clan = 'Clanless'):bool
+{
+    $query = "INSERT INTO teachers VALUES (null, $name, $username, $ranking, $clan);";
+    $success = runQuery($query);
+    return $success;
+}
+
+/**
+ * Uppdatera användardata
+ * @param int $id
+ * @param string $name
+ * @param string $username
+ * @param int $ranking
+ * @param string $clan
+ * @return bool success
+ */
+function update(int $id, string $name, string $username, int $ranking, string $clan):bool
+{
+    $query = "UPDATE teachers SET name='$name', username='$username', ranking='$ranking', clan='$clan' WHERE id=$id;";
+    $success = runQuery($query);
+    return $success;
+}
+
+
+/**
+ * Ta bort en användare
+ * @param int $id
+ * @return bool
+ */
+function destroy(int $id):bool
+{
+    $query = "DELETE FROM teachers WHERE id=$id;";
+    $success = runQuery($query);
+    return $success;
 }
