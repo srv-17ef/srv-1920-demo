@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="sv-SE">
+<head>
+    <meta charset="UTF-8">
+    <title>Forms</title>
+    <style>
+        label span {
+            width: 100px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+<form action="recieveData.php" method="post">
+    <label for="fname">
+        <span>Förnamn</span>
+        <input type="text" id="fname" name="fname" value="Johan">
+    </label>
+    <br>
+
+    <input type="checkbox" name="style" id="chk-rocker" value="1">
+    <label for="chk-rocker">Rocker</label>
+    <br>
+
+    <input type="checkbox" name="style" id="chk-emo" value="2">
+    <label for="chk-emo">Emo</label>
+    <br>
+
+    <input type="checkbox" name="style" id="chk-pop" value="3">
+    <label for="chk-pop">Pop</label>
+    <br>
+
+    <input type="radio" name="gender" id="radio-female" value="1">Female<br>
+    <input type="radio" name="gender" id="radio-male"   value="2">Male<br>
+    <input type="radio" name="gender" id="radio-unspec" value="3">Unspecified<br>
+
+    <input type="submit" value="Do it!">
+
+</form>
+</body>
+</html>

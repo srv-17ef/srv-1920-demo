@@ -11,4 +11,4 @@ $users = findAllUsers();
 $user = findUserById(4);
 store('Peer','uberdude');
 $peer = findUserByName('Peer');
-$peer = findUserByName('ee');
+$peer = findUserByPartialName('ee');
