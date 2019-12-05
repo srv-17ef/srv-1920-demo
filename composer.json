@@ -1,6 +1,8 @@
 {
     "require": {
         "twig/twig": "^2.0",
-        "klein/klein": "^2.1"
+        "klein/klein": "^2.1",
+        "altorouter/altorouter": "^2.0",
+        "nikic/fast-route": "^1.3"
     }
 }
